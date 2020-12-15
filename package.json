@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "mern-material",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -28,5 +28,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
