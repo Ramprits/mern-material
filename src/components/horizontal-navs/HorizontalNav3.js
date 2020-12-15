@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Link as CustomLink } from "react-router-dom";
+import { Link as CustomLink, useHistory } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Box from "@material-ui/core/Box";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navigation(props) {
   const classes = useStyles();
-
+  const history = useHistory();
   const content = {
     brand: { image: "nereus-assets/img/nereus-light.png", width: 110 },
     link1: "Section One",
@@ -78,7 +78,7 @@ export default function Navigation(props) {
     link3: "Section Three",
     link4: "Section Four",
     link5: "Section Five",
-    "primary-action": "Action",
+    "primary-action": "Login",
     ...props.content
   };
 
@@ -105,11 +105,16 @@ export default function Navigation(props) {
     setState({ ...state, open });
   };
 
+  const handleLogin = () => {
+    history.push("/login");
+  };
+
   return (
     <AppBar position="static" color="inherit">
       <Toolbar className={classes.toolbar}>
         <Link
-          href="#"
+          component={CustomLink}
+          to="/"
           color="primary"
           underline="none"
           variant="h5"
@@ -164,6 +169,7 @@ export default function Navigation(props) {
         </Link>
         <Button
           variant="contained"
+          onClick={handleLogin}
           color="secondary"
           className={classes.primaryAction}
         >
@@ -243,7 +249,12 @@ export default function Navigation(props) {
             borderRight={0}
             borderColor="background.emphasis"
           >
-            <Button variant="contained" color="secondary" fullWidth>
+            <Button
+              variant="contained"
+              color="secondary"
+              fullWidth
+              onClick={handleLogin}
+            >
               {content["primary-action"]}
             </Button>
           </Box>
